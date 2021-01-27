@@ -3,20 +3,35 @@ package ie.tudublin;
 //The cat class extends the animal class - it is a subclass
 public class Cat extends Animal
 {
-    //Constructor for the cat class - passing in String name
-    //So the cat has a name
-    public Cat(String name)
-    {
-        //This passes the String name parameter for dog into the super
-        //clas constructor because the dog class extends animal
-        super(name);
-    }
-
-    //Private Field - every animal has a name
+    //Private Field - every cat has lives
     //Private means it can only accessed by methods inside the animal class
     private int numLives;
 
-    //Public Accessor method to access the private field and get name
+    //Constructor for the cat class - passing in String name
+    //So the cat has a name and assign the numLives to 9
+    public Cat(String name)
+    {
+        //This passes the String name parameter and numLives for cat into the super
+        //clas constructor because the cat class extends animal
+        super(name);
+        numLives = 9;
+    }
+
+    //Kill method to check if the cats lives is a zero
+    void kill()
+    {
+            if (numLives > 0) 
+            {
+                    numLives--;
+                    System.out.println("Ouch");
+            }
+            else
+            {
+                    System.out.println("Dead");
+            }
+    }
+
+    //Public Accessor method to access the private field and get the amount of lives left
     //Getter/Accesssor
     public int getnumLives()
     {
@@ -26,20 +41,10 @@ public class Cat extends Animal
     //public Accessor Setter Method to set the private field
     public void setnumLives(int numLives)
     {
-        //We assign the numLives parameter to name private field
-        //because there are two variable called name and now 
+        //We assign the numLives parameter to the private field
+        //because there are two variable called numLives and now 
         //we have to disambiguate between them
         this.numLives = numLives;
     }
 
-     //The contructor is a method that gets called when the class Animal 
-    // gets instanciated/created. The contructor method always takes the
-    //same name as the class.
-    //Note, it does not have a return type. If it did it would not be a constructor.
-    public Animal(int numLives)
-    {
-        this.numLives = 9;
-    }
-
-   
 }
