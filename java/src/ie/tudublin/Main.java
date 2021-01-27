@@ -20,6 +20,9 @@ public class Main
         System.out.println(misty);
         System.out.println(topCat);
 
+        Animal ginger = new Cat ("Ginger", 9);
+        System.out.println(ginger);
+
         // What will get printed out??
 
         // 1. topcat, Garfield
@@ -27,4 +30,16 @@ public class Main
 
 
     }
+    /*public static void kill(String name, int numLives)
+    {
+            if (numLives > 0) 
+            {
+                    numLives--;
+                    System.out.println("Ouch");
+            }
+            else
+            {
+                    System.out.println("Dead");
+            }
+    }*/
 } 

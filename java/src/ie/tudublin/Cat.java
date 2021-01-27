@@ -18,7 +18,7 @@ public class Cat extends Animal
 
     //Public Accessor method to access the private field and get name
     //Getter/Accesssor
-    public int getnumLives
+    public int getnumLives()
     {
         //Gets access to the private field
         return numLives;
@@ -41,16 +41,5 @@ public class Cat extends Animal
         this.numLives = 9;
     }
 
-    public void kill()
-    {
-            if (numLives > 0) 
-            {
-                    numLives--;
-                    System.out.println("Ouch");
-            }
-            else
-            {
-                    System.out.println("Dead");
-            }
-    }
+   
 }
