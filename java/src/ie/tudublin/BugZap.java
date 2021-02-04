@@ -5,8 +5,8 @@ import processing.core.PApplet;
 public class BugZap extends PApplet{
 
 
-    float playerX = 50;
-    float playerY = 60;
+	float playerX = 40; 
+	float playerY = 20; 
     float playerWidth = 40;
 
 
@@ -33,14 +33,17 @@ public class BugZap extends PApplet{
         stroke(0);
 		strokeWeight(3);
 
-		line(20, 50, 30, 50);
-        playerX = playerWidth / 2;
+		line(x, playerY, x, x);
+        playerX = playerWidth/2;
         playerY = playerWidth /2;
         
     }
 
     public void keyPressed()
 	{
+		
+		if(keyPressed)
+		{
 		if (keyCode == LEFT)
 		{
 			playerX ++;
@@ -54,6 +57,7 @@ public class BugZap extends PApplet{
 		{
 			System.out.println("SPACE key pressed");
 		}
+	}
 	}	
     
 }
