@@ -7,7 +7,7 @@ public class HelloProcessing1 extends PApplet
 
 	public void settings()
 	{
-		size(500, 500);
+		size(700, 700);
 	}
 
 	public void setup() {
