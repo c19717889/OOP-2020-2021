@@ -28,11 +28,38 @@ public class Loops extends PApplet {
 
     public void draw() {
         background(0);
+        noStroke();
         switch (mode)
         {
             case 0:
-                ellipse(cx, cy, 100, 100);
+            fill(20,255,255);
+                if(mouseX < cx)
+                {
+
+                    rect (0, 0, cx, height);
+                }
+                
+                else 
+                {
+                    rect(cx, 0, cx, height);
+                }
                 break;
+
+                case 1:
+                fill(20,255,255);
+                    if(mouseX < cx)
+                    {
+    
+                        rect (0, 0, cx, height/2);
+                        //rect (0, 0, cx, width/2);
+                    }
+                    
+                    else 
+                    {
+                        rect(cx, 0, cx, width/2);
+                        
+                    }
+                    break;
         }
     }
 }
