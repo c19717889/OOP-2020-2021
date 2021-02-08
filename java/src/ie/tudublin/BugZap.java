@@ -19,18 +19,18 @@ public class BugZap extends PApplet {
 	float playerWidth = 40;
 	float halfPlayerWidth = playerWidth / 2;
 
-	float bugX, bugY, bugWidth = 30;
-	float halfBugWidth = bugWidth / 2;
+	//float bugX, bugY, bugWidth = 30;
+	//float halfBugWidth = bugWidth / 2;
 
-	int score = 0;
+	//int score = 0;
 
 	void reset() {
-		resetBug();
+		//resetBug();
 		playerX = width / 2;
 		playerY = height - 50;
 	}
 
-	void resetBug() {
+	/*void resetBug() {
 		bugX = random(halfBugWidth, width - halfBugWidth);
 		bugY = 50;
 	}
@@ -55,21 +55,24 @@ public class BugZap extends PApplet {
 		line(x - eyes, y - eyes, x - eyes, y - eyes * 2f);
 		line(x + eyes, y - eyes, x + eyes, y - eyes * 2f);
 
-	}
+	}*/
 
 	void drawPlayer(float x, float y, float w) {
 		stroke(255);
 		float playerHeight = w / 2;
+		//base line
 		line(x - halfPlayerWidth, y + playerHeight, x + halfPlayerWidth, y + playerHeight);
+		//left edge
 		line(x - halfPlayerWidth, y + playerHeight, x - halfPlayerWidth, y + playerHeight * 0.5f);
+		//right edge
 		line(x + halfPlayerWidth, y + playerHeight, x + halfPlayerWidth, y + playerHeight * 0.5f);
-
+		//top angle left
 		line(x - halfPlayerWidth, y + playerHeight * 0.5f, x - (halfPlayerWidth * 0.8f), y + playerHeight * 0.3f);
+		//top right angle
 		line(x + halfPlayerWidth, y + playerHeight * 0.5f, x + (halfPlayerWidth * 0.8f), y + playerHeight * 0.3f);
-
-		line(x - (halfPlayerWidth * 0.8f), y + playerHeight * 0.3f, x + (halfPlayerWidth * 0.8f),
-				y + playerHeight * 0.3f);
-
+		//top line
+		line(x - (halfPlayerWidth * 0.8f), y + playerHeight * 0.3f, x + (halfPlayerWidth * 0.8f), y + playerHeight * 0.3f);
+		//top gun
 		line(x, y, x, y + playerHeight * 0.3f);
 
 	}
@@ -85,7 +88,7 @@ public class BugZap extends PApplet {
 				playerX += playerSpeed;
 			}
 		}
-		if (keyCode == ' ')
+		/*if (keyCode == ' ')
 		{
 			if (playerX > bugX - halfBugWidth && playerX < bugX + halfBugWidth)
 			{
@@ -97,10 +100,10 @@ public class BugZap extends PApplet {
 			{
 				line(playerX, playerY, playerX, 0);
 			}
-		}
+		}*/
 	}
 
-	void moveBug() {
+	/*void moveBug() {
 		if ((frameCount % 30) == 0) {
 			bugX += random(-5, 5);
 			if (bugX < halfBugWidth) {
@@ -111,15 +114,16 @@ public class BugZap extends PApplet {
 			}
 			bugY += 2;
 		}
-	}
+	}*/
+	int gameMode = 0;
 
 	public void draw() {
 		background(0);
 		fill(255);
 		drawPlayer(playerX, playerY, playerWidth);
-		drawBug(bugX, bugY);
-		moveBug();
+		//drawBug(bugX, bugY);
+		//moveBug();
 
-		text("Score: " + score, 20, 20);
+		//text("Score: " + score, 20, 20);
 	}
 }
