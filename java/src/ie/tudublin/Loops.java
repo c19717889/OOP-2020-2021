@@ -26,6 +26,8 @@ public class Loops extends PApplet {
         colorMode(HSB);
     }
 
+    float offset = 0;
+
     public void draw() {
         background(0);
         noStroke();
@@ -63,7 +65,7 @@ public class Loops extends PApplet {
                 break;
             case 2:
             {
-                int numRects = (int)(width / 30.0f);
+                int numRects = (int)(mouseX / 30.0f);
                 float w = width / (float) numRects;
                 float cgap = 255 / (float) numRects;
                 for(int i = 0 ; i < numRects ; i ++)
@@ -89,45 +91,39 @@ public class Loops extends PApplet {
 
             case 4:
             {
-                fill(50, 255, 255);  
-                float smlsqr1 = 42;
-                float smlsqr2 = 42;
-                int numRects = (int)(width / smlsqr1);
-                float cgap = 255 / (float) numRects;
+                /*float w = 200;
+                float h = 100;
+                rectMode(CENTER);
 
-                rect(0, 0, smlsqr1, smlsqr1);
-                fill(40, 255, 255);
-                rect(smlsqr2, smlsqr2, smlsqr1, smlsqr1);
-                int count = 1;
-                for (int i = 0; i < numRects; i++)
+                if (mouseX > cx - (w/2) && mouseX < cx + (w/2) && mouseY > cy - (h/2) && mouseY <cy + (h/2))
                 {
-                    fill(cgap * i, 255, 255);
-                    rect(smlsqr2 * count, smlsqr2 * count, smlsqr1, smlsqr1);
-                    count ++;
+                    fill(127, 255, 255);
                 }
-                /*rect(smlsqr2 * 2, smlsqr2 * 2, smlsqr1, smlsqr1);
-                rect(smlsqr2 * 3, smlsqr2 * 3, smlsqr1, smlsqr1);
-                rect(smlsqr2 * 4, smlsqr2 * 4, smlsqr1, smlsqr1);
-                //smlsqr2 += 40;
-                rect(smlsqr2 * 5, smlsqr2 * 5, smlsqr1, smlsqr1);
-
-
-                /*int numRects = (int)(width / 40.0f);
-                //int numHoraz = (int) (height / 30.0f);
-                //float w = width / (float) numRects;
-                float h = height / (float) numHoraz;
-                float cgap = 255 / (float) numHoraz;
-                for(int i = 0 ; i < numHoraz ; i ++)
+                else
                 {
-                    fill(i * cgap, 255, 255);
-                    //rect(i * w, 0, w, height);
-                    rect(i * h, 0, h, width);
-                }*/
+                    fill(188, 255, 255);
+                }
+                rect(cx, cy, w, h);*/
+
+                offset += (mouseX / 100);
+                int numCircles = 20;
+                float w = width / (float)numCircles;
+                float cgap = 255 / (numCircles + numCircles);
+                for(int i = 0 ; i < numCircles ; i ++)
+                {
+                    for(int j = 0 ; j < numCircles ; j ++)
+                    {
+                        float c = ((cgap * (i + j)) + offset) % 255; 
+                        fill(c, 255, 255);
+                        ellipse((w / 2) + w * j, (w / 2) + w * i, w, w);
+                    }
+                }
                 
             }
             break;
 
             case 5:
+            {
                 fill(255, 255, 255);
                 stroke(255);
                 int numLines = 5;
@@ -138,8 +134,94 @@ public class Loops extends PApplet {
                     float angle = theta * i;
                     float x = sin(angle) * radius;
                     float y = cos(angle) * radius;
-                    line(cx, cy, cx + x, cy + y);
+                    line(cx, cy, cx + x, cy + y); 
                 }
+            }
+            break;
+
+            case 6:
+            {
+                rectMode(CORNER);
+                int numRects = (int) (mouseX / 10.0f);
+                float w = width / (float) numRects;
+                float cgap = 255 / (float) numRects;
+
+                for (int i = 0 ; i < numRects ; i ++)
+                {
+                    fill (cgap * i, 255, 255);
+                    rect(i * w, i * w, w, w);
+                    //rect(width - ((i + 1) * w), i * w, w, w);
+
+                }
+
+            break;
+            }
+            case 7:
+            {
+                rectMode(CORNER);
+                int numRects = (int) (mouseX / 10.0f);
+                float w = width / (float) numRects;
+                float cgap = 255 / (float) numRects;
+
+                for (int i = 0 ; i < numRects ; i ++)
+                {
+                    fill (cgap * i, 255, 255);
+                    rect(i * w, i * w, w, w);
+                    rect(width - ((i + 1) * w), i * w, w, w);
+
+                }
+
+            break;
+            }
+
+            case 8:
+            {
+                int numCircles = (int) mouseX / 10;
+                float cgap = 255 / (float) numCircles;
+                float gap = width / (float) numCircles;
+                float w = width;
+
+                for (int i = numCircles ; i >= 1 ; i--)
+                {
+                    fill(i *cgap, 255, 255);
+                    w = i * gap;
+                    ellipse(cx, cy, w, w);
+                }
+            break;
+            }  
+            case 9:
+            {
+
+                int sides = (mouseX / 50);
+                float theta = TWO_PI / (float) sides;
+                float radius = 200;
+                stroke(255);
+                for (int i = 1 ; i <= sides ; i ++)
+                {
+                    float x1 = sin(theta * (i -1)) * radius;
+                    float y1 = cos(theta * (i -1)) * radius;
+                    float x2 = sin(theta * i) * radius;
+                    float y2 = cos(theta * i) * radius;
+                    line(cx + x1, cy + y1, cx + x2, cy + y2);
+                }
+                /*offset += (mouseX / 100);
+                int numCircles = 20;
+                float w = width / (float)numCircles;
+                float cgap = 255 / (numCircles + numCircles);
+
+                for (int i = 0 ; i < numCircles ; i ++)
+                {
+                    for (int j = 0 ; j < numCircles ; j ++)
+                    {
+                        float c = ((cgap * (i + j )) + offset) % 255;
+                        fill(c, 255, 255);
+                        ellipse((w / 2) + w * j, (w / 2) + w * i, w, w);
+                    }
+                }*/
+            
+            } 
+            break;
         }
+        
     }
 }
