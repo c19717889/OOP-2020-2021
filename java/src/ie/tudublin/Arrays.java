@@ -47,6 +47,8 @@ public class Arrays extends PApplet {
         f = map1(9, 0, 1, 0, 10);
         println(f); // Should print 90
 
+
+
         f = map1(250, 200, 300, 400, 500);
         println(f); // Should print 450
 
@@ -125,15 +127,111 @@ public class Arrays extends PApplet {
         background(0);
         switch (mode) {
             case 0: {
-                // Bar chart
+                colorMode(HSB);
+            	float w = width / (float) rainfall.length;
+                    for (int i = 0; i < rainfall.length; i++) {
+                    noStroke();
+                    fill(random(255), 255, 255);
+                    float x = map(i, 0, rainfall.length, 0, width);
+                    rect(x, height, w, -rainfall[i]);
+                }
                 break;
             }
             case 1: {
                 // Trend line
+                colorMode(RGB);
+            	float w = width / (float) rainfall.length;
+                float cgap = 255 / (float) rainfall.length;
+                    for (int i = 0; i < rainfall.length; i++) {
+                    noStroke();
+                    fill(cgap * i, 255, 255);
+                    float x = map(i, 0, rainfall.length, 0, width);
+                    rect(x, height, w, -rainfall[i]);
+                }
+                break;
             }
             case 2: {
-                // Pie chart
+                // This is a demo of the map function
+    
+                stroke(0, 255, 0);
+                float border = width * 0.1f;
+                textAlign(CENTER, CENTER);
+                for (int i = -5; i <= 5; i++) {
+                    float x = map(i, -5, 5, border, width - border);
+                    line(x, border, x, height - border);
+                    line(border, x, width - border, x);
+                    fill(255);
+                    text(i, x, border * 0.5f);
+                    text(i, border * 0.5f, x);
+                }
+            break;
             }
+            case 3: {
+                //barchart
+                float border = width * 0.1f;
+                stroke(255);
+                colorMode(HSB);
+                line(border, border, border, height - border);
+                line(border, height - border, width - border, height - border);
+                textAlign(CENTER, CENTER);
+                for (float f = 0 ; f <= 120 ; f +=10)
+                {
+                    float y = map(f, 0, 120, height - border, border);
+                    line(border - 5, y, border, y);
+                    fill(255);
+                    text((int) f, border * 0.5f, y);
+                }
+
+                float w = (width - border * 2) / (float)rainfall.length;
+                for (int i = 0 ; i < rainfall.length ; i ++)
+                {
+                    float x = map(i, 0, rainfall.length, border, width - border);
+                    float c = map(i , 0, rainfall.length, 0, 255);
+                    fill(c, 255, 255);
+                    float h = map(rainfall[i], 0, 120, 0, -(height - (border * 2)));
+                    rect(x, height - border - 1, w, h);
+                    fill(255);
+                    text(months[i], x + (w * 0.5f), height - (border * 0.5f));  
+                }
+                text("Rainfall Barchart", width * 0.5f, border * 0.5f);
+            break;
+            }
+            case 4: {
+                //barchart
+                float border = width * 0.1f;
+                stroke(255);
+                colorMode(HSB);
+                line(border, border, border, height - border);
+                line(border, height - border, width - border, height - border);
+                textAlign(CENTER, CENTER);
+                for (float f = 0 ; f <= 120 ; f +=10)
+                {
+                    float y = map(f, 0, 120, height - border, border);
+                    line(border - 5, y, border, y);
+                    fill(255);
+                    text((int) f, border * 0.5f, y);
+                }
+
+                
+                /*for (int i = 1 ; i < rainfall.length ; i ++)
+                {
+                    float x1 = map(i -1, 0, rainfall.length -1, border + (w* 0.5f), width - border - (w * 0.5f));
+                    float y1 = map(rainfall[i -1], 0, 120, height - border, border);
+                    float x2 = map(i, 0, rainfall.length -1, border + (w* 0.5f), width - border - (w * 0.5f));
+                    float y2 = map(rainfall[i], 0, 120, height - border, border);
+                    line(x1, y1, x2, y2);
+                    //fill(255);
+                    //text(months[i], x1, y2, )
+
+
+                    
+                }*/
+                
+            break;
+            }
+            
         }
     }
 }
+
+
