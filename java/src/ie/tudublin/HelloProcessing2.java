@@ -39,8 +39,7 @@ public class HelloProcessing2 extends PApplet
 		// width, height mouseX and mouseY are variables defined
 		// in the PApplet superclass. 
 		// width & height give the width and height of the drawing window
-		// mouseX and mouseY give the current X and Y
-		// coordinates of the mouse
+		// mouseX and mouseY give the current X and Y coordinates of the mouse
 		// Draw an ellipse. cx, cy, w and h		
 		ellipse(x, height / 2, mouseX, mouseY);
 
