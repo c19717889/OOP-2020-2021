@@ -69,7 +69,7 @@ public class Main
         processing.core.PApplet.runSketch( a, new Life());
     }
     
-    public void colorfulLife()
+    public void ColorfulLife()
     {
         String[] a = {"MAIN"};
         processing.core.PApplet.runSketch( a, new ColorfulLife());
