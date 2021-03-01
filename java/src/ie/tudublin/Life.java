@@ -9,6 +9,29 @@ public class Life extends PApplet {
     boolean[][] board = new boolean[size][size];
     boolean[][] next = new boolean[size][size];
 
+    public void clear()
+    {
+        for(int row = 0 ; row < size ; row ++)
+        {
+            for (int col = 0 ; col < size ; col ++)
+            {
+                float dice = random(0.0f, 1.0f);
+                /*
+                if (dice < 0.5)
+                {
+                    board[row][col] = true;
+                }
+                else
+                {
+                    board[row][col] = false;
+                }
+                */
+                board[row][col] = (dice < 0.5f) ? true : false;
+            }
+        }
+
+    }
+
     public int countNeighbours(int row, int col)
     {
         int count = 0;
@@ -68,7 +91,7 @@ public class Life extends PApplet {
 
     public void setCell(boolean[][] board, int row, int col, boolean b)
     {
-        if (row >= 0 && row < size -1 && col >= 0 && col < size -1)
+        if (row >= 0 && row < size && col >= 0 && col < size)
         {
             board[row][col] = b;
         }
@@ -76,7 +99,7 @@ public class Life extends PApplet {
 
     public boolean getCell(boolean[][] board, int row, int col)
     {
-        if (row >= 0 && row < size -1 && col >= 0 && col < size -1)
+        if (row >= 0 && row < size && col >= 0 && col < size)
         {
             return board[row][col];
         }
@@ -144,21 +167,25 @@ public class Life extends PApplet {
 
     public void settings()
     {
-        size(500, 500);
+        size(700, 700);
     }
     
     int mode = 0;
     boolean paused = false;
     public void keyPressed() {
         if (keyCode == ' ')
+
         {
+            paused != paused;
         }
         
         if (keyCode == '1')
         {
+            randomize();
         }
         if (keyCode == '2')
         {
+            clear();
         }
         if (keyCode == '3')
         {
@@ -184,7 +211,41 @@ public class Life extends PApplet {
 
     private void updateBoard()
     {
-        // Put code here to apply the rules!!
+        for(int row = 0 ; row < size ; row ++)
+        {
+          for(int col = 0 ; col < size ; col ++)
+          {
+            //count surrounding cells - c = count
+            int c = countNeighbours(row, col);
+            //if(getCell(board, row, col))
+            if (board[row][col])
+            {
+              if (c == 2 || c == 3)
+              {
+                next[row][col] = true;
+                //setCell(next, row, col, true);
+              }
+              else
+              {
+                next[row][col] = false;
+                //setCell(next, row, col, false);
+              }
+            }
+            else
+            {
+              if (c == 3)
+              {
+                next[row][col] = true;
+                //setCell(next, row, col, true);
+              }
+              else
+              {
+                next[row][col] = false;
+                //setCell(next, row, col, false);
+              }
+            }
+          }
+        }
 
         
         // Swap board and next
@@ -202,5 +263,9 @@ public class Life extends PApplet {
         background(0);
         drawBoard(board);        
         updateBoard();
+        if(!paused)
+        {
+            updateBoard();
+        }
     }
 }
