@@ -2,21 +2,6 @@ package ie.tudublin;
 
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-import javax.swing.text.TableView.TableRow;
-
-import processing.core.PApplet;
-import processing.data.Table;
-
-public class StarMap extends PApplet {
-
-    //array list can grow and shrink
-    //generic array
-    //empty array list
-    ArrayList<Star> stars = new ArrayList<>();
-
-    //table object for csv file
-=======
 import processing.core.PApplet;
 import processing.data.Table;
 import processing.data.TableRow;
@@ -59,7 +44,6 @@ public class StarMap extends PApplet {
         }
     }
 
->>>>>>> c504cda9e46c5646ed4b258660087c13572eba84
     void loadStars()
     {
         Table table = loadTable("HabHYG15ly.csv", "header");
