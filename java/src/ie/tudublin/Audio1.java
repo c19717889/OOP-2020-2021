@@ -174,7 +174,8 @@ public class Audio1 extends PApplet {
                 int numPoints = 20;
                 float thetaInc = TWO_PI / (float) numPoints;
                 strokeWeight(2);
-                stroke(255);
+                
+                float lastX = width/2, lastY = height/2;
 
                 for(int i = 0; i < 1000 ; i++)
                 {
@@ -182,7 +183,9 @@ public class Audio1 extends PApplet {
                     float x = width / 2 + sin(theta) * r;
                     float y = height / 2 - sin(theta) * r;
                     r += 0.f;
-                    point(x,y);
+                    line(lastX, lastY, x, y);
+                    lastX = x;
+                    lastY = y;
                 }
                 
                 break;
