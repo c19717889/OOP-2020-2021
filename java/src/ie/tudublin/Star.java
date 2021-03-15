@@ -1,49 +1,61 @@
 package ie.tudublin;
 
+import processing.core.PApplet;
 import processing.data.TableRow;
 
 public class Star {
-    //private fields
     private boolean hab;
-    private String desplayName;
+    private String displayName;
     private float distance;
-    private float xG, yG, zG;
+    private float xG,yG,zG;
     private float absMag;
 
-    
-
-    //constructors
-    //method is called when class is created
     public Star()
     {
+        
+    }
 
+    public void render(PApplet pa)
+    {
+        float border = pa.width * 0.1f;
+        float x = PApplet.map(xG, -5, 5, border, pa.width - border);
+        float y = PApplet.map(yG, -5, 5, border, pa.width - border);
+        pa.stroke(255, 255, 0);
+        pa.line(x - 5, y, x + 5, y);
+        pa.line(x, y - 5, x, y + 5);
+        pa.stroke(255, 0, 0);
+        pa.noFill();
+        pa.circle(x, y, absMag);
+        pa.fill(255);
+        pa.textAlign(PApplet.LEFT, PApplet.CENTER);
+        pa.text(displayName, x + 10, y);
     }
 
     public Star(TableRow row)
     {
-        //constructor chaining
-        this(row.getInt("Hab?") == 1 ? true : false, 
-        row.getString("Display Name"),
-        row.getFloat("Distance"),
-        row.getFloat("xG"),
-        row.getFloat("yG"),
-        row.getFloat("zG"),
-        row.getFloat("AbsMag")
+        // Constructor chaining
+        this(
+            row.getInt("Hab?") == 1 ? true : false,
+            row.getString("Display Name"),
+            row.getFloat("Distance"),
+            row.getFloat("Xg"),
+            row.getFloat("Yg"),
+            row.getFloat("Zg"),
+            row.getFloat("AbsMag")
+        );
+    }
 
-    };
-
-    public Star(boolean hab, String desplayName, float distance, float xG, float yG, float zG)
+    public Star(boolean hab, String displayName, float distance, float xG, float yG, float zG, float absMag)
     {
         this.hab = hab;
-        this.desplayName = desplayName;
+        this.displayName = displayName;
         this.distance = distance;
         this.xG = xG;
         this.yG = yG;
-        this.xG = zG;
+        this.zG = zG;
         this.absMag = absMag;
-
     }
-
+    
     public boolean isHab() {
         return hab;
     }
@@ -52,12 +64,12 @@ public class Star {
         this.hab = hab;
     }
 
-    public String getDesplayName() {
-        return desplayName;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setDesplayName(String desplayName) {
-        this.desplayName = desplayName;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public float getDistance() {
@@ -99,9 +111,10 @@ public class Star {
     public void setAbsMag(float absMag) {
         this.absMag = absMag;
     }
-    
-    public String toString()
-    {
-        return "Star [hab + "\t" + desplayName + "\t" + distance + "\t" + xG + "\t" + yG + "\t" + xG]";
+
+    @Override
+    public String toString() {
+        return "Star [absMag=" + absMag + ", displayName=" + displayName + ", distance=" + distance + ", hab=" + hab
+                + ", xG=" + xG + ", yG=" + yG + ", zG=" + zG + "]";
     }
 }
